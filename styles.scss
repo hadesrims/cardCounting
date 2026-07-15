@@ -1,0 +1,365 @@
+$felt-void:  #061a14;
+$felt:       #0f3a2c;
+$felt-light: #17513e;
+$gold:       #d4af37;
+$gold-soft:  #e8c766;
+$cream:      #f2e8d9;
+$muted:      #8fb3a2;
+$red-suit:   #d1584a;
+$success:    #6fae74;
+$warning:    #d3a24a;
+$danger:     #cf6357;
+$radius:     14px;
+
+$font-display: Georgia, 'Iowan Old Style', 'Palatino Linotype', serif;
+$font-mono:    ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+$font-body:    system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.2rem;
+  padding: 1.4rem 1rem 1rem;
+  background: 
+    repeating-linear-gradient(45deg, rgba(255,255,255,0.015) 0 2px, transparent 2px 18px),
+    repeating-linear-gradient(-45deg, rgba(255,255,255,0.015) 0 2px, transparent 2px 18px),
+    radial-gradient(ellipse at 50% 0%, $felt 0%, $felt-void 75%);
+  color: $cream;
+  font-family: $font-body;
+}
+
+header {
+  width: 100%;
+  max-width: 640px;
+  text-align: center;
+
+  h1 {
+    margin: 0;
+    font-family: $font-display;
+    font-weight: 700;
+    font-size: clamp(1.05rem, 4vw, 1.4rem);
+    letter-spacing: 0.03em;
+    color: $gold-soft;
+  }
+
+  p {
+    margin: 0.25rem 0 0;
+    font-size: 0.78rem;
+    color: $muted;
+  }
+
+  .system-selector {
+    margin-top: 0.9rem;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.82rem;
+    color: $cream;
+
+    label {
+      color: $muted;
+    }
+
+    select {
+      min-width: 180px;
+      padding: 0.45rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(212,175,55,0.4);
+      background: rgba(4,18,13,0.9);
+      color: $cream;
+    }
+  }
+}
+
+main {
+  flex: 1;
+  width: 100%;
+  max-width: 640px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+#card-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.card-frame {
+  width: min(44vw, 230px);
+  aspect-ratio: 5 / 7;
+  border-radius: $radius;
+  background: $felt-light;
+  box-shadow: 0 0 0 1px rgba(212,175,55,0.25), 0 18px 40px rgba(0,0,0,0.55);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+#card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  animation: dealCard 0.22s ease-out;
+}
+
+#card-caption {
+  font-family: $font-display;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  min-height: 1.2em;
+}
+
+.scoreboard {
+  font-family: $font-mono;
+  font-variant-numeric: tabular-nums;
+  background: #04120d;
+  border: 1px solid rgba(212,175,55,0.35);
+  border-radius: 8px;
+  padding: 0.5rem 1.1rem;
+  display: flex;
+  gap: 1.2rem;
+  box-shadow: inset 0 0 12px rgba(0,0,0,0.6);
+  font-size: 0.85rem;
+
+  .value {
+    color: $gold;
+    font-weight: 600;
+  }
+
+  .label {
+    color: $muted;
+    font-size: 0.68rem;
+    letter-spacing: 0.04em;
+  }
+}
+
+.controls {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+button {
+  font-family: $font-body;
+  font-size: 0.85rem;
+  padding: 0.55rem 1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(212,175,55,0.4);
+  background: transparent;
+  color: $cream;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s, opacity 0.15s;
+
+  &:hover:not(:disabled) {
+    background: rgba(212,175,55,0.12);
+  }
+
+  &:active:not(:disabled) {
+    transform: scale(0.97);
+  }
+
+  &:disabled {
+    opacity: 0.35;
+    cursor: default;
+  }
+}
+
+button.primary {
+  background: $gold;
+  border-color: $gold;
+  color: #1a1305;
+  font-weight: 600;
+
+  &:hover:not(:disabled) {
+    background: $gold-soft;
+  }
+}
+
+button:focus-visible {
+  outline: 2px solid $gold-soft;
+  outline-offset: 2px;
+}
+
+#training-panel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+
+  .training-buttons {
+    display: flex;
+    gap: 0.6rem;
+  }
+
+  button {
+    min-width: 64px;
+    font-family: $font-mono;
+    font-size: 1rem;
+    font-weight: 700;
+  }
+
+  #training-hint {
+    font-size: 0.78rem;
+    color: $warning;
+    min-height: 1.1em;
+    text-align: center;
+  }
+}
+
+#guess-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+
+  h2 {
+    font-family: $font-display;
+    font-size: 1rem;
+    color: $gold-soft;
+    text-align: center;
+    margin: 0;
+  }
+
+  .hint {
+    font-size: 0.78rem;
+    color: $muted;
+    text-align: center;
+    max-width: 460px;
+    margin: 0;
+  }
+}
+
+.guess-fields {
+  display: flex;
+  gap: 0.9rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.guess-field {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  background: $felt-light;
+  border: 1px solid rgba(212,175,55,0.25);
+  border-radius: 10px;
+  padding: 0.7rem 0.9rem;
+  width: 120px;
+
+  label {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: $cream;
+    text-align: center;
+  }
+
+  small {
+    font-size: 0.65rem;
+    color: $muted;
+  }
+
+  input {
+    width: 64px;
+    font-family: $font-mono;
+    font-size: 1.1rem;
+    text-align: center;
+    background: #04120d;
+    border: 1px solid rgba(212,175,55,0.35);
+    border-radius: 6px;
+    color: $gold;
+    padding: 0.3rem 0;
+  }
+
+  input:disabled {
+    opacity: 0.6;
+  }
+}
+
+#guess-results {
+  width: 100%;
+  max-width: 420px;
+  background: #04120d;
+  border: 1px solid rgba(212,175,55,0.35);
+  border-radius: 10px;
+  padding: 0.9rem 1.1rem;
+  font-family: $font-mono;
+  font-size: 0.82rem;
+  line-height: 1.7;
+  box-shadow: inset 0 0 12px rgba(0,0,0,0.6);
+
+  .row {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .ok {
+    color: $success;
+  }
+
+  .ko {
+    color: $danger;
+  }
+
+  .final {
+    margin-top: 0.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px dashed rgba(212,175,55,0.3);
+    color: $gold;
+    font-weight: 700;
+  }
+}
+
+footer {
+  font-size: 0.7rem;
+  color: $muted;
+  text-align: center;
+
+  kbd {
+    font-family: $font-mono;
+    background: $felt-light;
+    border: 1px solid rgba(212,175,55,0.25);
+    border-radius: 4px;
+    padding: 0.05rem 0.35rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .scoreboard {
+    gap: 0.8rem;
+    font-size: 0.75rem;
+    padding: 0.45rem 0.8rem;
+  }
+
+  button {
+    font-size: 0.78rem;
+    padding: 0.5rem 0.85rem;
+  }
+
+  .guess-field {
+    width: 90px;
+  }
+}

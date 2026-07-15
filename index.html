@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comptage — Entraînement Blackjack</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+  <h1>♠ Entraînement <span id="system-name">Hi-Lo</span> ♦</h1>
+  <p>Comptez mentalement. L'appli garde le vrai Running Count pour vous.</p>
+  <div class="system-selector">
+    <label for="counter-system">Système de comptage</label>
+    <select id="counter-system" aria-label="Sélection du système de comptage"></select>
+  </div>
+</header>
+
+<main>
+  <div class="content-grid">
+    <section id="card-section">
+      <div class="card-frame">
+        <img id="card-image" src="" alt="Carte">
+      </div>
+      <p id="card-caption"></p>
+
+      <div class="scoreboard" aria-live="polite">
+        <div><span class="value" id="counter-position">0 / 52</span><br><span class="label">CARTE</span></div>
+        <div><span class="value" id="counter-remaining">52</span><br><span class="label">RESTANTES</span></div>
+      </div>
+
+      <div id="training-panel" hidden>
+        <div class="training-buttons" id="training-buttons"></div>
+        <p id="training-hint" aria-live="polite"></p>
+      </div>
+
+      <div class="controls">
+        <button id="btn-prev" aria-label="Carte Précédente">← Précédente</button>
+        <button id="btn-new" class="primary">Nouvelle partie</button>
+        <button id="btn-next" aria-label="Carte Suivante">Suivante →</button>
+      </div>
+    </section>
+
+    <aside id="rules-panel">
+      <h2>Règles du système</h2>
+      <p id="system-description"></p>
+      <div id="rule-values"></div>
+      <div id="rule-categories"></div>
+    </aside>
+  </div>
+
+  <section id="guess-section" hidden>
+    <h2>Estimez les cartes restantes</h2>
+    <p class="hint">Indiquez combien de cartes il reste dans chaque catégorie (pas besoin de les identifier une par une).</p>
+
+    <div class="guess-fields" id="guess-fields"></div>
+
+    <div class="controls">
+      <button id="btn-verify" class="primary">Valider</button>
+      <button id="btn-new-2">Nouvelle partie</button>
+    </div>
+
+    <div id="guess-results" hidden aria-live="polite"></div>
+  </section>
+
+</main>
+
+<footer id="footer-hint">
+  <kbd>→</kbd> carte suivante &nbsp; <kbd>←</kbd> revoir &nbsp; <kbd>Espace</kbd> nouvelle partie
+</footer>
+
+<script type="module" src="js/app.js"></script>
+
+</body>
+</html>
