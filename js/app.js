@@ -267,10 +267,11 @@ function checkRemainingGuess() {
     .join('');
 
   const signedRC = runningCount > 0 ? `+${runningCount}` : `${runningCount}`;
+  const categoryCount = currentSystem.categories.length;
 
   guessResults.innerHTML = `
     ${rowsHtml}
-    <div class="row"><span>Score</span><span>${exactMatches}/3 catégories exactes (écart total : ${totalAbsError})</span></div>
+    <div class="row"><span>Score</span><span>${exactMatches}/${categoryCount} catégories exactes (écart total : ${totalAbsError})</span></div>
     <div class="row final"><span>Running Count final</span><span>${signedRC}</span></div>
   `;
   guessResults.hidden = false;
